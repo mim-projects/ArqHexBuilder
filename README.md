@@ -39,7 +39,7 @@ Por cada tabla se genera la siguiente estructura (si la carpeta ya existe, se om
   - entities
     - `Roles.java`
     - `User.java`
-  -repository
+  - repository
     - `RolesRepository.java`
     - `UserRepository.java`
 - infrastructure
