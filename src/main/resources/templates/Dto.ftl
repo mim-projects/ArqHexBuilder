@@ -37,4 +37,13 @@ public class ${className}Dto {
     }
     </#if>
 </#list>
+
+    @Override
+    public String toString() {
+        return "${className}Dto{" +
+        <#list columns as col>
+            "${col.name}=" + ${col.name}<#if col_has_next> + ", " +</#if>
+        </#list>
+        + '}';
+    }
 }

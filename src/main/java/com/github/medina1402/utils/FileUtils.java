@@ -15,10 +15,17 @@ public class FileUtils {
                 throw new IOException("No se pudo crear la carpeta: " + parentDir.getAbsolutePath());
             }
         }
-
-        // Escribir el archivo
         try (FileWriter writer = new FileWriter(file)) {
             writer.write(content);
+        }
+    }
+
+    public static void CreateFolder(String fullPath) throws IOException {
+        File file = new File(fullPath);
+        if (!file.exists()) {
+            if (!file.mkdirs()) {
+                throw new IOException("No se pudo crear la carpeta: " + fullPath);
+            }
         }
     }
 }

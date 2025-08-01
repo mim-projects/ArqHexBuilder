@@ -1,6 +1,11 @@
 package ${package};
 
+<#if useJakarta>
 import jakarta.persistence.*;
+</#if>
+<#if !useJakarta>
+import javax.persistence.*;
+</#if>
 
 <#if importDate>
 import java.util.Date;
@@ -52,4 +57,13 @@ public class ${className} {
     }
     </#if>
 </#list>
+
+    @Override
+    public String toString() {
+        return "${className}Dto{" +
+        <#list columns as col>
+            "${col.name}=" + ${col.name}<#if col_has_next> + ", " +</#if>
+        </#list>
+        + '}';
+    }
 }

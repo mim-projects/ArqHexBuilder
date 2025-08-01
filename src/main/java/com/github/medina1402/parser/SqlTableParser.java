@@ -4,9 +4,11 @@ import com.github.medina1402.model.ColumnModel;
 import com.github.medina1402.model.ForeignKeyModel;
 import com.github.medina1402.model.TableModel;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
-import net.sf.jsqlparser.schema.Table;
-import net.sf.jsqlparser.statement.create.table.*;
 import net.sf.jsqlparser.statement.Statement;
+import net.sf.jsqlparser.statement.create.table.ColumnDefinition;
+import net.sf.jsqlparser.statement.create.table.CreateTable;
+import net.sf.jsqlparser.statement.create.table.ForeignKeyIndex;
+import net.sf.jsqlparser.statement.create.table.Index;
 
 import java.util.ArrayList;
 import java.util.List;

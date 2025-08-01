@@ -4,12 +4,18 @@ import ${packageBase}.domain.entities.${className};
 import ${packageBase}.application.dto.${className}Dto;
 import ${packageBase}.application.mapper.${className}Mapper;
 import ${packageBase}.application.service.${className}Service;
-import ${packageBase}.domain.entities.${className};
 import ${packageBase}.domain.repository.EntityRepository;
 import ${packageBase}.domain.repository.${className}Repository;
 import ${packageBase}.infrastructure.adapter.usecases.UseCaseCrudImpl;
+
+<#if useJakarta>
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
+</#if>
+<#if !useJakarta>
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+</#if>
 
 @Stateless
 public class ${className}ServiceImpl extends UseCaseCrudImpl<Integer, ${className}, ${className}Dto> implements ${className}Service {
