@@ -24,6 +24,7 @@ public class Normalizations {
     public static String NormaliceType(String type) {
         String cleanType = type.toLowerCase().replaceAll(" ", "");
         if (cleanType.startsWith("int")) return "Integer";
+        if (cleanType.startsWith("bigint")) return "Long";
         if (cleanType.startsWith("varchar")) return "String";
         if (cleanType.startsWith("text")) return "String";
         if (cleanType.startsWith("float")) return "Float";
