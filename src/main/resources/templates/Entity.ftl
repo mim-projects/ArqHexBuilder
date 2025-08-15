@@ -23,7 +23,7 @@ public class ${className} {
     <#if col.type == "Date">
     @Temporal(TemporalType.TIMESTAMP)
     </#if>
-    @Column(name = "${col.nameReferenceColumn}")
+    @Column(name = "${col.nameReferenceColumn}"<#if col.type == "Boolean">, columnDefinition = "tinyint(1) default 0"</#if>)
     private ${col.type} ${col.name};
 
     </#if>
