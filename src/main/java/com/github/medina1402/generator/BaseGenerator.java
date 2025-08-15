@@ -79,14 +79,18 @@ public class BaseGenerator {
         );
     }
 
-    private static void CreateWEB() throws IOException {
+    private static void CreateWEB() throws IOException, TemplateException {
         FileUtils.CreateFolder(PathUtils.FormatDirectoryPath(PropertiesModel.PATH) + "/entrypoint/");
         FileUtils.CreateFolder(PathUtils.FormatDirectoryPath(PropertiesModel.PATH) + "/entrypoint/web/");
         FileUtils.CreateFolder(PathUtils.FormatDirectoryPath(PropertiesModel.PATH) + "/entrypoint/web/models/");
         FileUtils.CreateFolder(PathUtils.FormatDirectoryPath(PropertiesModel.PATH) + "/entrypoint/web/models/base/");
         FileUtils.CreateFolder(PathUtils.FormatDirectoryPath(PropertiesModel.PATH) + "/entrypoint/web/models/lazy/");
-        FileUtils.CreateFolder(PathUtils.FormatDirectoryPath(PropertiesModel.PATH) + "/entrypoint/web/utils/");
         FileUtils.CreateFolder(PathUtils.FormatDirectoryPath(PropertiesModel.PATH) + "/entrypoint/web/views/");
+        FileUtils.CreateFolder(PathUtils.FormatDirectoryPath(PropertiesModel.PATH) + "/entrypoint/web/utils/");
+        FileUtils.WriteToFile(
+                PathUtils.FormatDirectoryPath(PropertiesModel.PATH) + "/entrypoint/web/models/lazy/GenericLazyDataModel.java",
+                Generator.CreateCode(null, null, ".entrypoint.web.models.lazy", "GenericLazyDataModel")
+        );
     }
 
     private static void CreateAPI(List<TableModel> allTablesModel) throws IOException, TemplateException {
