@@ -84,11 +84,6 @@ public class Main {
             List<TableModel> allTablesModel = SqlTableParser.ExtractDataFromMultipleTableSQL(PropertiesModel.SQL);
             BaseGenerator.Create(allTablesModel);
             for (TableModel table : allTablesModel) {
-                String tableName = table.getTableName().startsWith(PropertiesModel.MODULE)
-                        ? table.getTableName().substring(PropertiesModel.MODULE.length())
-                        : table.getTableName();
-                table.setTableName(tableName.startsWith("_") ? tableName.substring(1) : tableName);
-
                 EntityGenerator.Create(table);
                 DtoGenerator.Create(table);
                 ServiceGenerator.Create(table);

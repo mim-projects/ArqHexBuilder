@@ -2,6 +2,7 @@ package com.github.medina1402.parser;
 
 import com.github.medina1402.model.ColumnModel;
 import com.github.medina1402.model.ForeignKeyModel;
+import com.github.medina1402.model.PropertiesModel;
 import com.github.medina1402.model.TableModel;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;
@@ -18,7 +19,8 @@ public class SqlTableParser {
         List<TableModel> tables = new ArrayList<>();
         CCJSqlParserUtil.parseStatements(sql).getStatements().forEach(statement -> {
             try {
-                tables.add(ExtractDataFromTableSQL(null, statement));
+                TableModel tableModel = ExtractDataFromTableSQL(null, statement);
+                tables.add(tableModel);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -29,13 +31,12 @@ public class SqlTableParser {
     public static TableModel ExtractDataFromTableSQL(String sql, Statement statement) throws Exception {
         statement = statement == null ? CCJSqlParserUtil.parse(sql) : statement;
 
-        if (!(statement instanceof CreateTable)) {
+        if (!(statement instanceof CreateTable createTable)) {
             throw new IllegalArgumentException("No es una sentencia CREATE TABLE.");
         }
 
-        CreateTable createTable = (CreateTable) statement;
         TableModel table = new TableModel();
-        table.setTableName(createTable.getTable().getName());
+        table.setTableName(CleanTableName(createTable.getTable().getName()));
 
         // Extraer columnas y detectar PK embebido
         for (ColumnDefinition columnDef : createTable.getColumnDefinitions()) {
@@ -73,7 +74,7 @@ public class SqlTableParser {
                 if (idx instanceof ForeignKeyIndex fkIndex) {
                     List<String> columnNames = fkIndex.getColumnsNames();
                     List<String> referencedColumns = fkIndex.getReferencedColumnNames();
-                    String referencedTable = fkIndex.getTable().getName();
+                    String referencedTable = CleanTableName(fkIndex.getTable().getName());
 
                     for (int i = 0; i < columnNames.size(); i++) {
                         ForeignKeyModel fkModel = new ForeignKeyModel();
@@ -87,5 +88,12 @@ public class SqlTableParser {
         }
 
         return table;
+    }
+
+    private static String CleanTableName(String tableName) {
+        String name = tableName.startsWith(PropertiesModel.MODULE)
+                ? tableName.substring(PropertiesModel.MODULE.length())
+                : tableName;
+        return name.startsWith("_") ? name.substring(1) : name;
     }
 }
