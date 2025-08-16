@@ -4,6 +4,7 @@ import com.github.medina1402.model.ColumnModel;
 import com.github.medina1402.model.ForeignKeyModel;
 import com.github.medina1402.model.PropertiesModel;
 import com.github.medina1402.model.TableModel;
+import com.github.medina1402.utils.Normalizations;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.statement.create.table.ColumnDefinition;
@@ -13,6 +14,8 @@ import net.sf.jsqlparser.statement.create.table.Index;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.github.medina1402.utils.Normalizations.CleanTableName;
 
 public class SqlTableParser {
     public static List<TableModel> ExtractDataFromMultipleTableSQL(String sql) throws Exception {
@@ -74,7 +77,7 @@ public class SqlTableParser {
                 if (idx instanceof ForeignKeyIndex fkIndex) {
                     List<String> columnNames = fkIndex.getColumnsNames();
                     List<String> referencedColumns = fkIndex.getReferencedColumnNames();
-                    String referencedTable = CleanTableName(fkIndex.getTable().getName());
+                    String referencedTable = Normalizations.CleanTableName(fkIndex.getTable().getName());
 
                     for (int i = 0; i < columnNames.size(); i++) {
                         ForeignKeyModel fkModel = new ForeignKeyModel();
@@ -88,12 +91,5 @@ public class SqlTableParser {
         }
 
         return table;
-    }
-
-    private static String CleanTableName(String tableName) {
-        String name = tableName.startsWith(PropertiesModel.MODULE)
-                ? tableName.substring(PropertiesModel.MODULE.length())
-                : tableName;
-        return name.startsWith("_") ? name.substring(1) : name;
     }
 }

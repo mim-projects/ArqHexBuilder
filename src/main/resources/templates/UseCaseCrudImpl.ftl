@@ -13,7 +13,7 @@ import javax.ejb.Stateless;
 import java.util.ArrayList;
 import java.util.List;
 
-@Stateless(name = "<#if module??>${module}_</#if>use_case_crud_impl")
+@Stateless(name = "<#if module??>${module}_</#if><#if tableNameImpl??>${tableNameImpl}_</#if>use_case_crud_impl")
 public abstract class UseCaseCrudImpl<TypeId, Entity, Dto> implements UseCaseCrud<TypeId, Dto> {
     protected abstract EntityRepository<TypeId, Entity> getRepository();
     protected abstract Dto toDto(Entity entity);

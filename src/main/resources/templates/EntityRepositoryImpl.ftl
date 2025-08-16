@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
 
 import java.util.List;
 
-@Stateless(name = "<#if module??>${module}_</#if>entity_repository_impl")
+@Stateless(name = "<#if module??>${module}_</#if><#if tableNameImpl??>${tableNameImpl}_</#if>entity_repository_impl")
 public abstract class EntityRepositoryImpl<TypeId, T> implements EntityRepository<TypeId, T> {
     @PersistenceContext
     private EntityManager entityManager;

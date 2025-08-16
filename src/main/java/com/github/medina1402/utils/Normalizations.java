@@ -1,5 +1,7 @@
 package com.github.medina1402.utils;
 
+import com.github.medina1402.model.PropertiesModel;
+
 public class Normalizations {
     public static String TableName(String rawName) {
         if (rawName == null || rawName.isBlank()) return "";
@@ -34,5 +36,12 @@ public class Normalizations {
         if (cleanType.startsWith("datetime")) return "Date";
         if (cleanType.startsWith("date")) return "Date";
         return "Object";
+    }
+
+    public static String CleanTableName(String tableName) {
+        String name = tableName.startsWith(PropertiesModel.MODULE)
+                ? tableName.substring(PropertiesModel.MODULE.length())
+                : tableName;
+        return name.startsWith("_") ? name.substring(1) : name;
     }
 }

@@ -5,6 +5,7 @@ import com.github.medina1402.model.PropertiesModel;
 import com.github.medina1402.model.TableModel;
 import com.github.medina1402.parser.TemplateParser;
 import com.github.medina1402.utils.Normalizations;
+import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
 
 import java.io.IOException;
@@ -42,6 +43,7 @@ class Generator {
         data.put("package", PropertiesModel.PACKAGE + packageFile);
         data.put("packageBase", PropertiesModel.PACKAGE);
         data.put("tableName", table.getTableName());
+        data.put("tableNameImpl", Normalizations.CleanTableName(table.getTableName()));
         data.put("className", tableNameNormalize);
         data.put("tableNameStartLowerCase", tableNameNormalize.substring(0, 1).toLowerCase() + tableNameNormalize.substring(1));
         data.put("columns", TemplateParser.CreateColumnMap(table));

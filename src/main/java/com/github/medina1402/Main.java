@@ -72,7 +72,7 @@ public class Main {
 
     public static void main(String[] args) {
         // Estos parametros son ideales para agregar por CLI o UI
-        PropertiesModel.PATH = "C:\\Users\\medina\\Desktop\\mimsoft\\monitoreo_inteligencia_artificial\\mia_ui\\src\\main\\java\\com\\mimsoft\\mia_ui\\";
+        PropertiesModel.PATH = "C:\\Users\\medina\\Desktop\\mimsoft\\monitoreo_inteligencia_artificial\\mia_ui\\src\\main\\java\\com\\mimsoft\\mia_ui_2\\";
         PropertiesModel.MODULE = "mia_ui";
         PropertiesModel.PACKAGE = "com.mimsoft.mia_ui";
         PropertiesModel.SQL = SQLExample;

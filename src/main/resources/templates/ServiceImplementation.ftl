@@ -17,7 +17,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 </#if>
 
-@Stateless(name = "<#if module??>${module}_</#if>service_impl")
+@Stateless(name = "<#if module??>${module}_</#if><#if tableNameImpl??>${tableNameImpl}_</#if>service_impl")
 public class ${className}ServiceImpl extends UseCaseCrudImpl<Integer, ${className}, ${className}Dto> implements ${className}Service {
     @Inject
     private ${className}Repository repository;
