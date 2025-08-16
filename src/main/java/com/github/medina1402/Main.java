@@ -87,7 +87,7 @@ public class Main {
                 String tableName = table.getTableName().startsWith(PropertiesModel.MODULE)
                         ? table.getTableName().substring(PropertiesModel.MODULE.length())
                         : table.getTableName();
-                table.setTableName(tableName);
+                table.setTableName(tableName.startsWith("_") ? tableName.substring(1) : tableName);
 
                 EntityGenerator.Create(table);
                 DtoGenerator.Create(table);
