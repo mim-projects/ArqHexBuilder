@@ -10,7 +10,7 @@ import jakarta.ejb.Stateless;
 import javax.ejb.Stateless;
 </#if>
 
-@Stateless
+@Stateless(name = "<#if module??>${module}_</#if>repository_impl")
 public class ${className}RepositoryImpl extends EntityRepositoryImpl<Integer, ${className}> implements ${className}Repository {
     @Override
     protected Class<${className}> getEntityClass() {

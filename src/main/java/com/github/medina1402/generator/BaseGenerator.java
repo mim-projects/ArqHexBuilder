@@ -57,10 +57,7 @@ public class BaseGenerator {
         FileUtils.CreateFolder(PathUtils.FormatDirectoryPath(PropertiesModel.PATH) + "/shared/utils/");
         FileUtils.CreateFolder(PathUtils.FormatDirectoryPath(PropertiesModel.PATH) + "/shared/utils/lang/");
         FileUtils.CreateFolder(PathUtils.FormatDirectoryPath(PropertiesModel.PATH) + "/shared/utils/system/");
-        FileUtils.WriteToFile(
-                PathUtils.FormatDirectoryPath(PropertiesModel.PATH) + "/shared/utils/system/FileUtils.java",
-                Generator.CreateCode(null, null, ".shared.utils.system", "FileUtils")
-        );
+
         FileUtils.WriteToFile(
                 PathUtils.FormatDirectoryPath(PropertiesModel.PATH) + "/application/usecases/UseCaseCrud.java",
                 Generator.CreateCode(null, null, ".application.usecases", "UseCaseCrud")
@@ -104,6 +101,10 @@ public class BaseGenerator {
         FileUtils.CreateFolder(PathUtils.FormatDirectoryPath(PropertiesModel.PATH) + "/entrypoint/api/controllers/base/");
         FileUtils.CreateFolder(PathUtils.FormatDirectoryPath(PropertiesModel.PATH) + "/entrypoint/api/controllers/custom/");
 
+        FileUtils.WriteToFile(
+                PathUtils.FormatDirectoryPath(PropertiesModel.PATH) + "/shared/utils/system/FileUtils.java",
+                Generator.CreateCode(null, null, ".shared.utils.system", "FileUtils")
+        );
         FileUtils.WriteToFile(
                 PathUtils.FormatDirectoryPath(PropertiesModel.PATH) + "/entrypoint/api/factory/CrudControllerFactory.java",
                 Generator.CreateCode(null, null, ".entrypoint.api.factory", "CrudControllerFactory")

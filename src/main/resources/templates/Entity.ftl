@@ -12,7 +12,7 @@ import java.util.Date;
 
 </#if>
 @Entity
-@Table(name = "${tableName}")
+@Table(name = "<#if module??>${module}_</#if>${tableName}")
 public class ${className} {
 <#list columns as col>
     <#if col.primaryKey>
